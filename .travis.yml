@@ -9,14 +9,14 @@ script:
   - docker run -e CI=true cihangll/react-test npm test
 
 after_success:
-  - docker build -t cihangll/multi-client ./client
-  - docker build -t cihangll/multi-nginx ./nginx
-  - docker build -t cihangll/multi-server ./server
-  - docker build -t cihangll/multi-worker ./worker
+  - docker build -t cihangll/multi-client:latest ./client
+  - docker build -t cihangll/multi-nginx:latest ./nginx
+  - docker build -t cihangll/multi-server:latest ./server
+  - docker build -t cihangll/multi-worker:latest ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to the docker hub
-  - docker push cihangll/multi-client
-  - docker push cihangll/multi-nginx
-  - docker push cihangll/multi-server
-  - docker push cihangll/multi-worker
+  - docker push cihangll/multi-client:latest
+  - docker push cihangll/multi-nginx:latest
+  - docker push cihangll/multi-server:latest
+  - docker push cihangll/multi-worker:latest
